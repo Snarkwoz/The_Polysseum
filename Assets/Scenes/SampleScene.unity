@@ -402,8 +402,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f001ce5c0263624a9354b6136abf928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 256878964}
-  speed: 5
+  rb: {fileID: 256878964}
+  speed: 15
+  jump: 5
   logic: {fileID: 1607132203}
   alive: 1
 --- !u!50 &256878964
@@ -952,7 +953,7 @@ GameObject:
   - component: {fileID: 755519365}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1435,7 +1436,7 @@ Transform:
   m_GameObject: {fileID: 1664886693}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.04, y: 0, z: 0}
+  m_LocalPosition: {x: -3.04, y: 4.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

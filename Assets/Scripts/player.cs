@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    public Rigidbody2D body;
-    public int speed;
+    public Rigidbody2D rb;
+    public float speed;
+    public float jump;
     public LogicScript logic;
     public bool alive = true;
+    private bool grounded;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,29 +18,29 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) == true && alive == true)
-        {
-            body.linearVelocity = Vector2.up * speed;
-        }
-
-        if (Input.GetKeyDown(KeyCode.A) == true && alive == true)
-        {
-            body.linearVelocity = Vector2.left * speed;
-        }
-
-        if (Input.GetKeyDown(KeyCode.S) == true && alive == true)
-        {
-            body.linearVelocity = Vector2.down * speed;
-        }
-
-        if (Input.GetKeyDown(KeyCode.D) == true && alive == true)
-        {
-            body.linearVelocity = Vector2.right * speed;
-        }
+        rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.linearVelocity.y);
         
+        if (Input.GetKey(KeyCode.Space) && grounded)
+        {
+            Jump();
+        }
     }
 
-    private void death(Collision2D collision)
+    private void Jump()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump);
+        grounded = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            grounded = true;
+        }
+    }
+
+    private void Death(Collision2D collision)
     {
         logic.gameover();
         alive = false;
