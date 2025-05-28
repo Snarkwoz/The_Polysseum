@@ -6,7 +6,7 @@ public class player : MonoBehaviour
     public float speed;
     public float jump;
     public LogicScript logic;
-    public bool alive = true;
+    private bool alive = true;
     private bool grounded;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,7 +18,9 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.linearVelocity.y);
+        float movespeed = speed * Time.deltaTime;
+
+        rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * movespeed, rb.linearVelocity.y);
         
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
@@ -39,6 +41,7 @@ public class player : MonoBehaviour
             grounded = true;
         }
     }
+
 
     private void Death(Collision2D collision)
     {
