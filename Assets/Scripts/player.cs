@@ -18,9 +18,7 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float movespeed = speed * Time.deltaTime;
-
-        rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * movespeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.linearVelocity.y);
         
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
@@ -41,7 +39,6 @@ public class player : MonoBehaviour
             grounded = true;
         }
     }
-
 
     private void Death(Collision2D collision)
     {
