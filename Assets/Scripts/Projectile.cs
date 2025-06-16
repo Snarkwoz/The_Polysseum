@@ -5,14 +5,14 @@ using UnityEngine.PlayerLoop;
 public class Projectile : MonoBehaviour
 {
     public float speed;
-    private bool hit;
+    private bool hit = false;
     public BoxCollider2D collider;
     private float direction;
     private float lifetime;
 
     private void Update()
     {
-        if (hit)
+        if (hit = true)
         {
             Deactivate();
             return;
@@ -24,14 +24,8 @@ public class Projectile : MonoBehaviour
         lifetime += Time.deltaTime;
         if (lifetime > 5)
         {
-            gameObject.SetActive(false);
+            Deactivate()
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        hit = true;
-        collider.enabled = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

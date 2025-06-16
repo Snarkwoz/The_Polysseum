@@ -9,12 +9,6 @@ public class player : MonoBehaviour
     private bool alive = true;
     private bool grounded;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
