@@ -23,7 +23,7 @@ public class Attack : MonoBehaviour
     {
         // Spawn a Missile
 
-        GameObject newmissile = Instantiate(missile_prefab, missilePoint);
+        Instantiate(missile_prefab, missilePoint.position, missilePoint.rotation);
         cooldown_timer = 0;
     }
 }
