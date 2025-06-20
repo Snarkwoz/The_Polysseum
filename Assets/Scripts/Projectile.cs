@@ -5,24 +5,34 @@ using UnityEngine.PlayerLoop;
 public class Projectile : MonoBehaviour
 {
     public float speed;
-    private bool hit = false;
+    private bool hit;
     public BoxCollider2D collider;
     private float direction;
     private float lifetime = 0;
     private Rigidbody2D body;
+    private int directionTracker = 1;
 
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        body.linearVelocity = transform.right * speed;
+
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            directionTracker = -1;
+        }
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            directionTracker = 1;
+        }
+
+        body.linearVelocity = transform.right * speed * directionTracker;
     }
 
     private void Update()
     {
-        if (hit = true)
+        if (hit == true)
         {
             Deactivate();
-            return;
         }
 
         lifetime += Time.deltaTime;
@@ -32,16 +42,16 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "wall")
-    //    {
-    //        hit = true;
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "wall")
+        {
+            hit = true;
+        }
+    }
 
     private void Deactivate()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

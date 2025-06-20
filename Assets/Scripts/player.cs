@@ -13,6 +13,15 @@ public class player : MonoBehaviour
     void Update()
     {
         rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.linearVelocity.y);
+
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
         
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
