@@ -21,8 +21,6 @@ public class Attack : MonoBehaviour
 
     private void Missile()
     {
-        // Spawn a Missile
-
         Instantiate(missile_prefab, missilePoint.position, missilePoint.rotation);
         cooldown_timer = 0;
     }

@@ -7,25 +7,33 @@ public class Projectile : MonoBehaviour
     public float speed;
     private bool hit;
     public BoxCollider2D collider;
-    private float direction;
     private float lifetime = 0;
     private Rigidbody2D body;
-    private int directionTracker = 1;
+    private bool facingright;
 
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
 
-        if (Input.GetAxis("Horizontal") < 0)
+        if (Input.GetKeyDown("d"))
         {
-            directionTracker = -1;
-        }
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            directionTracker = 1;
+            facingright = true;
         }
 
-        body.linearVelocity = transform.right * speed * directionTracker;
+        if (Input.GetKeyDown("a"))
+        {
+            facingright = false;
+        }
+
+        if (facingright == true)
+        {
+            body.linearVelocity = transform.right * speed;
+        }
+        if (facingright == false)
+        {
+            body.linearVelocity = transform.right * speed * -1;
+        }
+        
     }
 
     private void Update()
@@ -45,6 +53,10 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "wall")
+        {
+            hit = true;
+        }
+        if (collision.gameObject.tag == "player")
         {
             hit = true;
         }
