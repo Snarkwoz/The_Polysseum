@@ -15,16 +15,6 @@ public class Projectile : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
 
-        if (Input.GetKeyDown("d"))
-        {
-            facingright = true;
-        }
-
-        if (Input.GetKeyDown("a"))
-        {
-            facingright = false;
-        }
-
         if (facingright == true)
         {
             body.linearVelocity = transform.right * speed;
@@ -33,7 +23,6 @@ public class Projectile : MonoBehaviour
         {
             body.linearVelocity = transform.right * speed * -1;
         }
-        
     }
 
     private void Update()

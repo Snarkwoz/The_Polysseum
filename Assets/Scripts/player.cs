@@ -8,8 +8,11 @@ public class player : MonoBehaviour
     public LogicScript logic;
     private bool alive = true;
     private bool grounded;
+    public Attack attackscript;
 
-    // Update is called once per frame
+    public float cooldown;
+    private float cooldown_timer = Mathf.Infinity;
+
     void Update()
     {
         rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.linearVelocity.y);
@@ -27,6 +30,14 @@ public class player : MonoBehaviour
         {
             Jump();
         }
+
+        if (Input.GetMouseButton(0) && cooldown_timer > cooldown)
+        {
+            attackscript.Missile();
+            cooldown_timer = 0;
+        }
+
+        cooldown_timer += Time.deltaTime;
     }
 
     private void Jump()

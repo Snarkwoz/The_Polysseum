@@ -2,27 +2,23 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public float cooldown;
-    private float cooldown_timer = Mathf.Infinity;
     public player player;
     public Transform missilePoint;
     public GameObject missile_prefab;
 
-    // Update is called once per frame
-    void Update()
+    private void Missile(Vector3 direction)
     {
-        if (Input.GetMouseButton(0) && cooldown_timer > cooldown)
+        GameObject newmissile = Instantiate(missile_prefab, missilePoint.position, missilePoint.rotation);
+        if (direction.x < 0)
         {
-            Missile();
+             newmissile.GetComponent <Projectile>().facingright = false;
         }
-
-        cooldown_timer += Time.deltaTime;
-    }
-
-    private void Missile()
-    {
-        Instantiate(missile_prefab, missilePoint.position, missilePoint.rotation);
-        cooldown_timer = 0;
+        if (direction.x > 0)
+        {
+             newmissile.GetComponent <Projectile>().facingright = true;
+        }
+        
+       
     }
 }
     
