@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     public BoxCollider2D collider;
     private float lifetime = 0;
     private Rigidbody2D body;
-    private bool facingright;
+    public bool facingright;
 
     private void Start()
     {
@@ -49,10 +49,15 @@ public class Projectile : MonoBehaviour
         {
             hit = true;
         }
+        if (collision.gameObject.tag == "enemy")
+        {
+            hit = true;
+        }
     }
 
     private void Deactivate()
     {
         Destroy(gameObject);
     }
+
 }

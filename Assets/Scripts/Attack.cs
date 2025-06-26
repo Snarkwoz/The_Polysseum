@@ -6,19 +6,17 @@ public class Attack : MonoBehaviour
     public Transform missilePoint;
     public GameObject missile_prefab;
 
-    private void Missile(Vector3 direction)
+    public void Missile(Vector3 direction)
     {
         GameObject newmissile = Instantiate(missile_prefab, missilePoint.position, missilePoint.rotation);
         if (direction.x < 0)
         {
-             newmissile.GetComponent <Projectile>().facingright = false;
+             newmissile.GetComponent<Projectile>().facingright = false;
         }
         if (direction.x > 0)
         {
-             newmissile.GetComponent <Projectile>().facingright = true;
+             newmissile.GetComponent<Projectile>().facingright = true;
         }
-        
-       
     }
 }
     

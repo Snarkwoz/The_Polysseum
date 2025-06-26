@@ -33,7 +33,7 @@ public class player : MonoBehaviour
 
         if (Input.GetMouseButton(0) && cooldown_timer > cooldown)
         {
-            attackscript.Missile();
+            attackscript.Missile(transform.localScale);
             cooldown_timer = 0;
         }
 
