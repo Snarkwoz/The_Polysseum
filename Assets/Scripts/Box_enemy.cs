@@ -6,6 +6,9 @@ public class enemy : MonoBehaviour
     private SpriteRenderer rend;
     public Color red;
     public Color yellow;
+    private float timer;
+
+    public Attack attackscript;
 
     void Start()
     {
@@ -27,8 +30,15 @@ public class enemy : MonoBehaviour
         {
             rend.color = red;
         }
+
+        if (timer > 1)
+        {
+            attackscript.Missile(-transform.localScale);
+            Debug.Log("pew");
+            timer = 0;
+        }
         
-        // if (hitplayer()) {damageplayer};
+        timer += Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,6 +56,6 @@ public class enemy : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }

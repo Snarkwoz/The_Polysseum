@@ -6,9 +6,9 @@ public class player : MonoBehaviour
     public float speed;
     public float jump;
     public LogicScript logic;
-    private bool alive = true;
     private bool grounded;
     public Attack attackscript;
+    public int health;
 
     public float cooldown;
     private float cooldown_timer = Mathf.Infinity;
@@ -52,11 +52,29 @@ public class player : MonoBehaviour
         {
             grounded = true;
         }
+        if (collision.gameObject.tag == "enemy")
+        {
+            Damage();
+        }
+        if (collision.gameObject.tag == "attack")
+        {
+            Damage();
+        }
+        if (collision.gameObject.tag == "death_plane")
+        {
+            Death();
+        }
     }
 
-    private void Death(Collision2D collision)
+    private void Damage()
     {
-        logic.gameover();
-        alive = false;
+        Debug.Log("ow");
+    }
+
+    private void Death()
+    {
+        //logic.gameover();
+        Debug.Log("Dead");
+        //Destroy(gameObject);
     }
 }

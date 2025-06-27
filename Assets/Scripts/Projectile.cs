@@ -6,7 +6,6 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
     private bool hit;
-    public BoxCollider2D collider;
     private float lifetime = 0;
     private Rigidbody2D body;
     public bool facingright;
@@ -46,6 +45,10 @@ public class Projectile : MonoBehaviour
             hit = true;
         }
         if (collision.gameObject.tag == "player")
+        {
+            hit = true;
+        }
+        if (collision.gameObject.tag == "attack")
         {
             hit = true;
         }
