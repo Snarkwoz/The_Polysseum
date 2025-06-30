@@ -103,7 +103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 16
-  collider: {fileID: 1739978103228237336}
   facingright: 0
 --- !u!50 &1918740655275272990
 Rigidbody2D:

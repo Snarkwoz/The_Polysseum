@@ -9,7 +9,6 @@ public class player : MonoBehaviour
     private bool grounded;
     public Attack attackscript;
     public int health;
-
     public float cooldown;
     private float cooldown_timer = Mathf.Infinity;
 
@@ -31,20 +30,19 @@ public class player : MonoBehaviour
             Jump();
         }
 
+        if (health <= 0)
+        {
+            Death();
+        }
+
         if (Input.GetMouseButton(0) && cooldown_timer > cooldown)
         {
             attackscript.Missile(transform.localScale);
             cooldown_timer = 0;
         }
-
         cooldown_timer += Time.deltaTime;
     }
 
-    private void Jump()
-    {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump);
-        grounded = false;
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -55,10 +53,12 @@ public class player : MonoBehaviour
         if (collision.gameObject.tag == "enemy")
         {
             Damage();
+            // Knockback();
         }
         if (collision.gameObject.tag == "attack")
         {
             Damage();
+            // Knockback();
         }
         if (collision.gameObject.tag == "death_plane")
         {
@@ -66,15 +66,23 @@ public class player : MonoBehaviour
         }
     }
 
+    
+    private void Jump()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump);
+        grounded = false;
+    }
+
     private void Damage()
     {
         Debug.Log("ow");
+        health -= 1;
     }
 
     private void Death()
     {
-        //logic.gameover();
+        logic.gameover();
         Debug.Log("Dead");
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

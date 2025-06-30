@@ -14,5 +14,4 @@ public class LogicScript : MonoBehaviour
     { 
         gameoverscreen.SetActive(true); 
     }
-
 }
