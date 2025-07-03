@@ -34,7 +34,6 @@ public class enemy : MonoBehaviour
         if (timer > 1)
         {
             attackscript.Missile(-transform.localScale);
-            Debug.Log("pew");
             timer = 0;
         }
         

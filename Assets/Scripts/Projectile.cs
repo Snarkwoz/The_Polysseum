@@ -40,10 +40,9 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "test")
+        if (collision.gameObject.tag == "wall")
         {
             hit = true;
-            Debug.Log("BOOM");
         }
         if (collision.gameObject.tag == "player")
         {

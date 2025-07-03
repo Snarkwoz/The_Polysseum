@@ -11,6 +11,7 @@ public class player : MonoBehaviour
     public int health;
     public float cooldown;
     private float cooldown_timer = Mathf.Infinity;
+    public GameObject box_enemy;
 
     void Update()
     {
@@ -23,6 +24,15 @@ public class player : MonoBehaviour
         if (Input.GetAxis("Horizontal") > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        if (grounded == true)
+        {
+            Debug.Log("grounded");
+        }
+        if (grounded == false)
+        {
+            Debug.Log("not grounded");
         }
         
         if (Input.GetKey(KeyCode.Space) && grounded)
@@ -41,14 +51,23 @@ public class player : MonoBehaviour
             cooldown_timer = 0;
         }
         cooldown_timer += Time.deltaTime;
+
+        if (Input.GetKeyDown("t"))
+        {
+            Instantiate(box_enemy);
+        }
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ground")
         {
             grounded = true;
+        }
+        if (collision.gameObject.tag != "ground")
+        {
+            grounded = false;
         }
         if (collision.gameObject.tag == "enemy")
         {
