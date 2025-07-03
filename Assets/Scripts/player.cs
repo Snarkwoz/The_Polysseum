@@ -58,16 +58,11 @@ public class player : MonoBehaviour
         }
     }
 
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ground")
         {
             grounded = true;
-        }
-        if (collision.gameObject.tag != "ground")
-        {
-            grounded = false;
         }
         if (collision.gameObject.tag == "enemy")
         {
@@ -85,11 +80,17 @@ public class player : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            grounded = false;
+        }
+    }
     
     private void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump);
-        grounded = false;
     }
 
     private void Damage()
