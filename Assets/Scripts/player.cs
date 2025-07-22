@@ -25,15 +25,6 @@ public class player : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-
-        if (grounded == true)
-        {
-            Debug.Log("grounded");
-        }
-        if (grounded == false)
-        {
-            Debug.Log("not grounded");
-        }
         
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
@@ -95,7 +86,6 @@ public class player : MonoBehaviour
 
     private void Damage()
     {
-        Debug.Log("ow");
         health -= 1;
     }
 
