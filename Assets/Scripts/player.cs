@@ -12,6 +12,7 @@ public class player : MonoBehaviour
     public float cooldown;
     private float cooldown_timer = Mathf.Infinity;
     public GameObject box_enemy;
+    public float iframes;
 
     void Update()
     {
@@ -47,9 +48,11 @@ public class player : MonoBehaviour
         {
             Instantiate(box_enemy);
         }
+
+        iframes += Time.deltaTime;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ground")
         {
@@ -86,6 +89,7 @@ public class player : MonoBehaviour
 
     private void Damage()
     {
+        Debug.Log("ow");
         health -= 1;
     }
 

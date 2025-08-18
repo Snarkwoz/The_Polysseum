@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     private float lifetime = 0;
     private Rigidbody2D body;
     public bool facingright;
+    private float test;
 
     private void Start()
     {
@@ -28,7 +29,9 @@ public class Projectile : MonoBehaviour
     {
         if (hit == true)
         {
-            Deactivate();
+            if (test > 0)
+                Deactivate();
+        test += Time.deltaTime;
         }
 
         lifetime += Time.deltaTime;
@@ -36,6 +39,8 @@ public class Projectile : MonoBehaviour
         {
             Deactivate();
         }
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
