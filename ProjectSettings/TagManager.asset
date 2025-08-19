@@ -11,6 +11,7 @@ TagManager:
   - death_plane
   - wall
   - test
+  - enemy_attack
   layers:
   - Default
   - TransparentFX

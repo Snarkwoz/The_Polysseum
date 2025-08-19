@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8226531648612070738}
   m_Layer: 0
   m_Name: Enemy Missile
-  m_TagString: attack
+  m_TagString: enemy_attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 16
+  lifetime: 0
   facingright: 0
 --- !u!50 &1918740655275272990
 Rigidbody2D:

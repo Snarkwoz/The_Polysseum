@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
     private bool hit;
-    private float lifetime = 0;
+    public float lifetime;
     private Rigidbody2D body;
     public bool facingright;
     private float test;
@@ -29,9 +29,7 @@ public class Projectile : MonoBehaviour
     {
         if (hit == true)
         {
-            if (test > 0)
-                Deactivate();
-        test += Time.deltaTime;
+            Deactivate();
         }
 
         lifetime += Time.deltaTime;
@@ -39,8 +37,6 @@ public class Projectile : MonoBehaviour
         {
             Deactivate();
         }
-
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -53,7 +49,7 @@ public class Projectile : MonoBehaviour
         {
             hit = true;
         }
-        if (collision.gameObject.tag == "attack")
+        if (collision.gameObject.tag == "enemy_attack")
         {
             hit = true;
         }
@@ -67,5 +63,4 @@ public class Projectile : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
 }

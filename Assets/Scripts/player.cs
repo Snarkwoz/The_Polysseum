@@ -12,7 +12,7 @@ public class player : MonoBehaviour
     public float cooldown;
     private float cooldown_timer = Mathf.Infinity;
     public GameObject box_enemy;
-    public float iframes;
+    private float iframes = Mathf.Infinity;
 
     void Update()
     {
@@ -52,6 +52,14 @@ public class player : MonoBehaviour
         iframes += Time.deltaTime;
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "enemy_attack")
+        {
+            Damage();
+        }
+    }
+
     public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ground")
@@ -61,13 +69,8 @@ public class player : MonoBehaviour
         if (collision.gameObject.tag == "enemy")
         {
             Damage();
-            // Knockback();
         }
-        if (collision.gameObject.tag == "attack")
-        {
-            Damage();
-            // Knockback();
-        }
+        
         if (collision.gameObject.tag == "death_plane")
         {
             Death();
@@ -89,8 +92,12 @@ public class player : MonoBehaviour
 
     private void Damage()
     {
-        Debug.Log("ow");
-        health -= 1;
+        if (iframes > 1)
+        {
+            Debug.Log("ow");
+            health -= 1;
+            iframes = 0;
+        }
     }
 
     private void Death()
