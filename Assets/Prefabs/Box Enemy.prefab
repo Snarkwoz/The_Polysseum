@@ -179,7 +179,13 @@ MonoBehaviour:
   health: 3
   red: {r: 1, g: 0, b: 0, a: 1}
   yellow: {r: 0.9553981, g: 1, b: 0, a: 1}
+  boxcollider: {fileID: 4614445783345933371}
   attackscript: {fileID: 4668423385624364505}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  detectionrange: -3.76
+  colliderdistance: 0.56
 --- !u!1 &6172295734032685886
 GameObject:
   m_ObjectHideFlags: 0

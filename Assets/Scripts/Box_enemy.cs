@@ -8,8 +8,11 @@ public class enemy : MonoBehaviour
     public Color yellow;
     private float timer;
 
-    public BoxCollider2D collider;
+    public BoxCollider2D boxcollider;
     public Attack attackscript;
+    public LayerMask playerLayer;
+    public float detectionrange;
+    public float colliderdistance;
     
 
     void Start()
@@ -44,7 +47,18 @@ public class enemy : MonoBehaviour
 
     private bool PlayerInSight()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0, Vecter2.left, 0, );
+        RaycastHit2D hit = Physics2D.BoxCast(boxcollider.bounds.center + transform.right * detectionrange * transform.localScale.x * colliderdistance, 
+        new Vector3(boxcollider.bounds.size.x * detectionrange, boxcollider.bounds.size.y, boxcollider.bounds.size.z), 
+        0, Vector2.left, 0, playerLayer);
+        return hit.collider != null;
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(boxcollider.bounds.center + transform.right * detectionrange * transform.localScale.x * colliderdistance, 
+        new Vector3(boxcollider.bounds.size.x * detectionrange, boxcollider.bounds.size.y, boxcollider.bounds.size.z));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
