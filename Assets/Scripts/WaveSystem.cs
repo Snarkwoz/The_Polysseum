@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WaveSystem
+public class WaveSystem : MonoBehaviour
 {
     public GameObject box_enemy;
     // public GameObject another_enemy_maybe;

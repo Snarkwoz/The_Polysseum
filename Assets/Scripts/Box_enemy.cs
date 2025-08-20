@@ -8,7 +8,9 @@ public class enemy : MonoBehaviour
     public Color yellow;
     private float timer;
 
+    public BoxCollider2D collider;
     public Attack attackscript;
+    
 
     void Start()
     {
@@ -38,6 +40,11 @@ public class enemy : MonoBehaviour
         }
         
         timer += Time.deltaTime;
+    }
+
+    private bool PlayerInSight()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0, Vecter2.left, 0, );
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

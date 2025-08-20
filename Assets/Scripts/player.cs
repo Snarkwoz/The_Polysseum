@@ -13,6 +13,7 @@ public class player : MonoBehaviour
     private float cooldown_timer = Mathf.Infinity;
     public GameObject box_enemy;
     private float iframes = Mathf.Infinity;
+    public GameObject right_spawner;
 
     void Update()
     {
@@ -43,11 +44,6 @@ public class player : MonoBehaviour
             cooldown_timer = 0;
         }
         cooldown_timer += Time.deltaTime;
-
-        if (Input.GetKeyDown("t"))
-        {
-            Instantiate(box_enemy);
-        }
 
         iframes += Time.deltaTime;
     }
@@ -92,7 +88,7 @@ public class player : MonoBehaviour
 
     private void Damage()
     {
-        if (iframes > 1)
+        if (iframes > 0.7)
         {
             Debug.Log("ow");
             health -= 1;
