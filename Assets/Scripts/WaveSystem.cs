@@ -1,13 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveSystem : MonoBehaviour
 {
     public GameObject box_enemy;
     // public GameObject another_enemy_maybe;
-    public int wavecounter = 1;
+    private string wavecounter = "1";
+    public Text counter;
 
     void Update()
     {
+        counter.text = wavecounter;
+
         // generate_wave()
         
         // spawn in enemies
@@ -18,7 +22,7 @@ public class WaveSystem : MonoBehaviour
 
     private void generate_wave()
     {
-        if (wavecounter == 1)
+        if (wavecounter == "1")
         {
             
             //wave.Add(stuff);

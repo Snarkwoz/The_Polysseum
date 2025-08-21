@@ -12,7 +12,10 @@ public class enemy : MonoBehaviour
     public Attack attackscript;
     public LayerMask playerLayer;
     public float detectionrange;
+    public float verticalrange;
     public float colliderdistance;
+
+    public GameObject detection;
     
 
     void Start()
@@ -22,6 +25,7 @@ public class enemy : MonoBehaviour
 
     void Update()
     {
+    
         if (health <= 0)
         {
             Die();
@@ -45,20 +49,41 @@ public class enemy : MonoBehaviour
         timer += Time.deltaTime;
     }
 
-    private bool PlayerInSight()
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(boxcollider.bounds.center + transform.right * detectionrange * transform.localScale.x * colliderdistance, 
-        new Vector3(boxcollider.bounds.size.x * detectionrange, boxcollider.bounds.size.y, boxcollider.bounds.size.z), 
-        0, Vector2.left, 0, playerLayer);
-        return hit.collider != null;
+    
 
+    private void TurnLeft()
+    {
+        transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+        Debug.Log("left");
+    }
+    private void TurnRight()
+    {
+        transform.localScale = new Vector3(-1.2f, 1.2f, 1f);
+        Debug.Log("right");
     }
 
+    private bool PlayerToLeft()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(boxcollider.bounds.center + transform.right * detectionrange * colliderdistance, 
+        new Vector3(boxcollider.bounds.size.x * detectionrange, boxcollider.bounds.size.y * verticalrange, boxcollider.bounds.size.z), 
+        0, Vector2.left, 0, playerLayer);
+
+        if (hit.collider != null)
+        {
+            Debug.Log("true");
+            return true;
+        }
+        else
+        {
+            Debug.Log("false");
+            return false;
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxcollider.bounds.center + transform.right * detectionrange * transform.localScale.x * colliderdistance, 
-        new Vector3(boxcollider.bounds.size.x * detectionrange, boxcollider.bounds.size.y, boxcollider.bounds.size.z));
+        Gizmos.DrawWireCube(boxcollider.bounds.center + transform.right * detectionrange * colliderdistance, 
+        new Vector3(boxcollider.bounds.size.x * detectionrange, boxcollider.bounds.size.y * verticalrange, boxcollider.bounds.size.z));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
