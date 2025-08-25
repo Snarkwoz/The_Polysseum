@@ -10,12 +10,9 @@ public class enemy : MonoBehaviour
 
     public BoxCollider2D boxcollider;
     public Attack attackscript;
-    public LayerMask playerLayer;
-    public float detectionrange;
-    public float verticalrange;
-    public float colliderdistance;
 
-    public GameObject detection;
+    public GameObject leftdetection;
+    public GameObject rightdetection;
     
 
     void Start()
@@ -62,29 +59,6 @@ public class enemy : MonoBehaviour
         Debug.Log("right");
     }
 
-    private bool PlayerToLeft()
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(boxcollider.bounds.center + transform.right * detectionrange * colliderdistance, 
-        new Vector3(boxcollider.bounds.size.x * detectionrange, boxcollider.bounds.size.y * verticalrange, boxcollider.bounds.size.z), 
-        0, Vector2.left, 0, playerLayer);
-
-        if (hit.collider != null)
-        {
-            Debug.Log("true");
-            return true;
-        }
-        else
-        {
-            Debug.Log("false");
-            return false;
-        }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxcollider.bounds.center + transform.right * detectionrange * colliderdistance, 
-        new Vector3(boxcollider.bounds.size.x * detectionrange, boxcollider.bounds.size.y * verticalrange, boxcollider.bounds.size.z));
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -92,6 +66,11 @@ public class enemy : MonoBehaviour
         {
             Damage();
         }
+    }
+
+    public void CollisionDetected(EnemyDetection player)
+    {
+        Debug.Log("collided");
     }
 
     private void Damage()

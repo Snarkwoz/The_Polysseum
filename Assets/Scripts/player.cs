@@ -54,6 +54,14 @@ public class player : MonoBehaviour
         {
             Damage();
         }
+        if (collision.gameObject.tag == "enemy")
+        {
+            Damage();
+        }
+        if (collision.gameObject.tag == "death_plane")
+        {
+            Death();
+        }
     }
 
     public void OnCollisionStay2D(Collision2D collision)
@@ -61,15 +69,6 @@ public class player : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             grounded = true;
-        }
-        if (collision.gameObject.tag == "enemy")
-        {
-            Damage();
-        }
-        
-        if (collision.gameObject.tag == "death_plane")
-        {
-            Death();
         }
     }
 
