@@ -68,7 +68,7 @@ public class enemy : MonoBehaviour
         }
     }
 
-    public void CollisionDetected(EnemyDetection player)
+    public void CollisionDetected(EnemyDetection Detection)
     {
         Debug.Log("collided");
     }

@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 467979666409960460}
   - component: {fileID: 5439259299487058650}
   m_Layer: 0
-  m_Name: leftDetection
+  m_Name: Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
