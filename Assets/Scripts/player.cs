@@ -5,14 +5,17 @@ public class player : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
     public float jump;
+    private bool isgrounded;
+
     public LogicScript logic;
-    private bool grounded;
     public Attack attackscript;
+
     public int health;
     public float cooldown;
     private float cooldown_timer = Mathf.Infinity;
-    public GameObject box_enemy;
     private float iframes = Mathf.Infinity;
+
+    public GameObject box_enemy;
     public GameObject right_spawner;
 
     void Update()
@@ -28,7 +31,7 @@ public class player : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
         
-        if (Input.GetKey(KeyCode.Space) && grounded)
+        if (Input.GetKey(KeyCode.Space) && isgrounded)
         {
             Jump();
         }
@@ -48,6 +51,11 @@ public class player : MonoBehaviour
         iframes += Time.deltaTime;
     }
 
+    public void ReceiveParameter(bool grounded)
+    {
+        isgrounded = grounded;
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "enemy_attack")
@@ -63,22 +71,6 @@ public class player : MonoBehaviour
             Death();
         }
     }
-
-    public void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "ground")
-        {
-            grounded = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "ground")
-        {
-            grounded = false;
-        }
-    }
     
     private void Jump()
     {
@@ -89,7 +81,6 @@ public class player : MonoBehaviour
     {
         if (iframes > 0.7)
         {
-            Debug.Log("ow");
             health -= 1;
             iframes = 0;
         }
@@ -98,7 +89,6 @@ public class player : MonoBehaviour
     private void Death()
     {
         logic.gameover();
-        Debug.Log("Dead");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
