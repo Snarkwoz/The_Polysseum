@@ -45,6 +45,10 @@ public class Projectile : MonoBehaviour
         {
             hit = true;
         }
+        if (collision.gameObject.tag == "ground")
+        {
+            hit = true;
+        }
         if (collision.gameObject.tag == "player")
         {
             hit = true;

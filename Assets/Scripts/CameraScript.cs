@@ -6,7 +6,7 @@ public class CameraScript : MonoBehaviour
     private float currentPosX;
     private Vector3 velocity = Vector3.zero;
     public Transform player;
-    public  float aheadDistance;
+    public float aheadDistance;
     private float lookAhead;
     
     void Update()

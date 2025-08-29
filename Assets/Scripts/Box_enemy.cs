@@ -10,9 +10,6 @@ public class enemy : MonoBehaviour
 
     public BoxCollider2D boxcollider;
     public Attack attackscript;
-
-    public GameObject leftdetection;
-    public GameObject rightdetection;
     
 
     void Start()
