@@ -14,9 +14,14 @@ public class player : MonoBehaviour
     public float cooldown;
     private float cooldown_timer = Mathf.Infinity;
     private float iframes = Mathf.Infinity;
+    private SpriteRenderer rend;
+    public Color pink;
+    public Color red;
 
-    public GameObject box_enemy;
-    public GameObject right_spawner;
+    void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+    }
 
     void Update()
     {
@@ -31,7 +36,7 @@ public class player : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
         
-        if (Input.GetKey(KeyCode.Space) && isgrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isgrounded)
         {
             Jump();
         }
@@ -49,6 +54,11 @@ public class player : MonoBehaviour
         cooldown_timer += Time.deltaTime;
 
         iframes += Time.deltaTime;
+
+        if (iframes > 0.7)
+        {
+            rend.color = pink;
+        }
     }
 
     public void ReceiveParameter(bool grounded)
@@ -70,6 +80,10 @@ public class player : MonoBehaviour
         {
             Death();
         }
+        if (collision.gameObject.tag == "end_platform")
+        {
+            Victory();
+        }
     }
     
     private void Jump()
@@ -83,7 +97,14 @@ public class player : MonoBehaviour
         {
             health -= 1;
             iframes = 0;
+            rend.color = red;
         }
+    }
+
+    private void Victory()
+    {
+        logic.Victory();
+        gameObject.SetActive(false);
     }
 
     private void Death()

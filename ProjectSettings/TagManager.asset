@@ -12,6 +12,7 @@ TagManager:
   - wall
   - test
   - enemy_attack
+  - end_platform
   layers:
   - Default
   - TransparentFX

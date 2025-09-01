@@ -43,20 +43,6 @@ public class enemy : MonoBehaviour
         timer += Time.deltaTime;
     }
 
-    
-
-    private void TurnLeft()
-    {
-        transform.localScale = new Vector3(1.2f, 1.2f, 1f);
-        Debug.Log("left");
-    }
-    private void TurnRight()
-    {
-        transform.localScale = new Vector3(-1.2f, 1.2f, 1f);
-        Debug.Log("right");
-    }
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "attack")
@@ -64,12 +50,6 @@ public class enemy : MonoBehaviour
             Damage();
         }
     }
-
-    public void CollisionDetected(EnemyDetection Detection)
-    {
-        Debug.Log("collided");
-    }
-
     private void Damage()
     {
         health -= 1;
