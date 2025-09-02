@@ -975,15 +975,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f001ce5c0263624a9354b6136abf928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 278762340}
   speed: 12
   jump: 12
-  logic: {fileID: 1824021753}
-  attackscript: {fileID: 438432891}
   health: 5
   cooldown: 0.5
+  rb: {fileID: 278762340}
   pink: {r: 1, g: 0, b: 0.45882356, a: 1}
-  red: {r: 1, g: 0, b: 0, a: 0}
+  red: {r: 1, g: 0, b: 0, a: 1}
+  logic: {fileID: 1824021753}
+  attackscript: {fileID: 438432891}
 --- !u!212 &278762342
 SpriteRenderer:
   m_ObjectHideFlags: 0

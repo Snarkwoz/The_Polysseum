@@ -21,7 +21,7 @@ public class LogicScript : MonoBehaviour
 
     // Triggers game over screen
     public void gameover()
-    { 
+    {
         gameoverscreen.SetActive(true); 
     }
 

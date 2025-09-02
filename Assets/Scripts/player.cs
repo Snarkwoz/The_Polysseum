@@ -39,7 +39,7 @@ public class player : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
         
-        // Jump is on ground
+        // Jump if on ground
         if (Input.GetKeyDown(KeyCode.Space) && isgrounded)
         {
             Jump();

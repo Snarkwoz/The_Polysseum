@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour
     public float aheadDistance;
     private float lookAhead;
     
-    // Moves camera depending on where the player is, configurable to go slightly ahead is needed
+    // Moves camera depending on where the player is, configurable to go slightly ahead if needed
     void Update()
     {
         transform.position = new Vector3(player.position.x + lookAhead, transform.position.y, transform.position.z);
