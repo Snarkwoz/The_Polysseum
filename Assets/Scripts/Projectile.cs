@@ -29,12 +29,6 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        // Checks if hits anything
-        if (hit == true)
-        {
-            Deactivate();
-        }
-
         // Expires after 5 seconds
         lifetime += Time.deltaTime;
         if (lifetime > 5)
@@ -48,23 +42,23 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.tag == "wall")
         {
-            hit = true;
+            Deactivate();
         }
         if (collision.gameObject.tag == "ground")
         {
-            hit = true;
+            Deactivate();
         }
         if (collision.gameObject.tag == "player")
         {
-            hit = true;
+            Deactivate();
         }
         if (collision.gameObject.tag == "enemy_attack")
         {
-            hit = true;
+            Deactivate();
         }
         if (collision.gameObject.tag == "enemy")
         {
-            hit = true;
+            Deactivate();
         }
     }
 
