@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    // Loads each level
     public void StartLevel1()
     {
         SceneManager.LoadScene("Level 1");
@@ -24,6 +25,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Level 5");
     }
 
+    // Closes the game
     public void QuitGame()
     {
         Application.Quit();

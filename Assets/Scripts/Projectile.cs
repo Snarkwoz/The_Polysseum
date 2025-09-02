@@ -4,6 +4,7 @@ using UnityEngine.PlayerLoop;
 
 public class Projectile : MonoBehaviour
 {
+    // Getting parameters and body
     public float speed;
     private bool hit;
     public float lifetime;
@@ -11,6 +12,7 @@ public class Projectile : MonoBehaviour
     public bool facingright;
     private float test;
 
+    // Gets body and recieves direction
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -27,11 +29,13 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        // Checks if hits anything
         if (hit == true)
         {
             Deactivate();
         }
 
+        // Expires after 5 seconds
         lifetime += Time.deltaTime;
         if (lifetime > 5)
         {
@@ -39,6 +43,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    // Checks for any collisions, all of which trigger hit
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "wall")
@@ -63,6 +68,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    // Deactivates the missile
     private void Deactivate()
     {
         Destroy(gameObject);
