@@ -7,6 +7,7 @@ public class player : MonoBehaviour
     public float jump;
     private bool isgrounded;
     public int health;
+    private string healthUI;
     public float cooldown;
     private float cooldown_timer = Mathf.Infinity;
     private float iframes = Mathf.Infinity;
@@ -23,6 +24,8 @@ public class player : MonoBehaviour
     {
         // Getting the sprite renderer so the colour can be changed
         rend = GetComponent<SpriteRenderer>();
+
+        health_display();
     }
 
     void Update()
@@ -109,7 +112,15 @@ public class player : MonoBehaviour
             health -= 1;
             iframes = 0;
             rend.color = red;
+            health_display();
         }
+    }
+
+    // Sends the health as a string to LogicScript to be displayed
+    private void health_display()
+    {
+        healthUI = health.ToString();
+        logic.GetHealthDisplay(healthUI);
     }
 
     // Victory function

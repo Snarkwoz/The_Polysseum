@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    // Checks for any collisions, all of which trigger hit
+    // Checks for any collisions, all of which deactivate the missile
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "wall")
