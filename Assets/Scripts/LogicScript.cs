@@ -22,6 +22,7 @@ public class LogicScript : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+    // Gets players health value from player script and displays that in the game
     public void GetHealthDisplay(string health)
     {
         health_display.text = health;
